@@ -1,0 +1,66 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+        <ComboBox Width="100" Height="26" Name="cbSample">
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="1"></TextBlock>
+                </StackPanel>
+                <ComboBoxItem.Style>
+                    <Style TargetType="ComboBoxItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBoxItem.Style>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="2"></TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="3"></TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="4"></TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+        <ComboBox Width="100" Height="26" Name="cbSample2"  
+            ItemsSource="{Binding Path=Numbers}" 
+            DisplayMemberPath="Value"
+            SelectedValuePath="Value"
+            SelectedValue="{Binding SelectedNumber.Value}"
+            SelectedItem="{Binding SelectedNumber, Mode=TwoWay}">
+            </ComboBox>
+        <ComboBox Width="100" Height="26" Name="cbSample3"  
+            ItemsSource="{Binding Path=Numbers}" 
+            SelectedValuePath="Value"
+            SelectedValue="{Binding SelectedNumber.Value}"
+            SelectedItem="{Binding SelectedNumber, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Value}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        <TextBlock Text="{Binding SelectedNumber.Value,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Text="{Binding  ElementName=cbSample2, Path=SelectedValue}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
