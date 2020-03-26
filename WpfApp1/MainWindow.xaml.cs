@@ -60,6 +60,24 @@ namespace WpfApp1
             }
         }
 
+        private void cbSample4_Selected(object sender, SelectionChangedEventArgs e)
+        {
+            var combo = (ComboBox)sender;
+            var selection =e.AddedItems[0];
+            if (selection is string s)
+                if (s == string.Empty) return;
+            var itemCollection = combo.ItemsSource.Cast<Number>().ToList();
+
+            var indexActual = itemCollection.IndexOf((Number)selection);
+            var valuchange = itemCollection[0];
+
+            itemCollection[0] = (Number)selection;
+            itemCollection[indexActual] = valuchange;
+            combo.ItemsSource = itemCollection;
+
+
+
+        }
     }
 
 

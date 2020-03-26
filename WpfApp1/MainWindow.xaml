@@ -59,7 +59,22 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-        <TextBlock Text="{Binding SelectedNumber.Value,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <ComboBox Width="100" Height="26" Name="cbSample4"  
+            ItemsSource="{Binding Path=Numbers}" 
+            SelectedValuePath="Value"
+            SelectionChanged="cbSample4_Selected"          
+            SelectedValue="{Binding SelectedNumber.Value}"
+            SelectedItem="{Binding SelectedNumber, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Value}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+         <TextBlock Text="{Binding SelectedNumber.Value,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
         <TextBlock Text="{Binding  ElementName=cbSample2, Path=SelectedValue}"></TextBlock>
         </StackPanel>
     </Grid>
